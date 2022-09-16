@@ -4,7 +4,7 @@ pragma solidity >= 0.8.11;
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "./MatchManager.sol";
 
-contract PVBase is Initializable, MatchManager {
+abstract contract PVBase is Initializable, MatchManager {
     mapping (uint256 => uint256) public minDeposit;
     uint256 public depositIncRateOnGradeUp;
     
@@ -24,7 +24,7 @@ contract PVBase is Initializable, MatchManager {
 
     event UpdateMinDeposit(uint256 grade, uint256 minDepositAmount);
     event UpdateSetDepositIncRateOnGradeUp(uint256 depositIncRate);
-    event PrizeWinner(address winner, uint256 amount);
+    event PrizeWinner(uint256 matchId, address winner, uint256 winnerGrade, uint256 amount, address loser, uint256 loserGrade);
     event PlayingDeposit(address player, uint256 amount);
     event UpdateEpochDuration(uint256 duration);
     event UpdateMaxPlayTimesInEpoch(uint256 maxTimes);

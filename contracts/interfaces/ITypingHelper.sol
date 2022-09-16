@@ -89,6 +89,10 @@ enum MATCH_RESULT {
 
 struct MatchUnit {
     MATCH_STATE state;
+    address player1;
+    address player2;
+    uint256 grade1;
+    uint256 grade2;
     uint256 speed1;
     uint256 speed2;
     MATCH_RESULT result;

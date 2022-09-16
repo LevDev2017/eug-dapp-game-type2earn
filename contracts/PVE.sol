@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >= 0.8.11;
 
-import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "./PVBase.sol";
 
 contract PVE is PVBase {
@@ -80,11 +79,18 @@ contract PVE is PVBase {
         require(tokenAmount <= max1, "Deposit amount is too large");
 
         mu.jackpot1 = tokenAmount;
+        mu.grade1 = gradeRequested;
+        mu.player1 = player;
         mu.jackpot2 = tokenAmount * getPrizeRate(gradeRequested) / 10000;
+        mu.grade2 = gradeRequested;
+        mu.player2 = address(0);
+
         mu.speed1 = playerSpeed;
         mu.speed2 = getTargetSpeed(gradeRequested);
 
         tokenContract.transferFrom(player, address(this), mu.jackpot1);
+
+        mu.state = MATCH_STATE.PLAYER2_READY;
 
         resultMatch(matchId);
 
@@ -99,7 +105,7 @@ contract PVE is PVBase {
                 gradeManager.setGrade(player, gradeRequested - 1);
             }
 
-            emit PrizeWinner(player, mu.jackpot2);
+            emit PrizeWinner(matchId, player, gradeRequested, mu.jackpot2, address(0), 0);
         } else {
             userLostToken[player] += mu.jackpot1;
             totalLostToken += mu.jackpot1;
