@@ -93,7 +93,7 @@ contract PVP is PVBase {
             }
 
             emit PrizeWinner(matchId, mu.player1, mu.grade1, jackpot2, mu.player2, mu.grade2);
-        } else {
+        } else if (mu.result == MATCH_RESULT.PLAYER2_WIN) {
             uint256 minJackpot1 = mu.jackpot2 * (1 + mu.grade2) / (1 + mu.grade1);
             uint256 jackpot1 = 0;
             if (minJackpot1 < mu.jackpot1) {
@@ -116,6 +116,9 @@ contract PVP is PVBase {
             }
 
             emit PrizeWinner(matchId, mu.player2, mu.grade2, jackpot1, mu.player1, mu.grade1);
+        } else if (mu.result == MATCH_RESULT.DRAW) {
+            tokenContract.transfer(mu.player1, mu.jackpot1);
+            tokenContract.transfer(mu.player2, mu.jackpot2);
         }
 
         totalPlayTimes = totalPlayTimes + 1;

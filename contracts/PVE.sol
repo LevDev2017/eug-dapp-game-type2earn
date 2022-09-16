@@ -106,7 +106,7 @@ contract PVE is PVBase {
             }
 
             emit PrizeWinner(matchId, player, gradeRequested, mu.jackpot2, address(0), 0);
-        } else {
+        } else if (mu.result == MATCH_RESULT.PLAYER2_WIN) {
             userLostToken[player] += mu.jackpot1;
             totalLostToken += mu.jackpot1;
 
@@ -114,6 +114,8 @@ contract PVE is PVBase {
                 gradeManager.setGrade(player, gradeRequested + 1);
             }
             emit PlayingDeposit(player, mu.jackpot1);
+        } else if (mu.result == MATCH_RESULT.DRAW) {
+            tokenContract.transfer(player, mu.jackpot1);
         }
 
         totalPlayTimes = totalPlayTimes + 1;

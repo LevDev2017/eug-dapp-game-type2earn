@@ -99,3 +99,12 @@ struct MatchUnit {
     uint256 jackpot1;
     uint256 jackpot2;
 }
+
+struct PlayerEntity {
+    address player;
+}
+
+struct LeaderBoardEntity {
+    address user;
+    uint256 score;
+}

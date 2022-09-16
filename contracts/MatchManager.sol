@@ -69,10 +69,14 @@ abstract contract MatchManager is OwnableUpgradeable {
         mu.state = MATCH_STATE.STARTED;
 
         // action to check the winner...
-        if (mu.speed1 >= mu.speed2) {
+        if (mu.speed1 > mu.speed2) {
             mu.result = MATCH_RESULT.PLAYER1_WIN;
-        } else {
+        } else if (mu.speed1 < mu.speed2) {
             mu.result = MATCH_RESULT.PLAYER2_WIN;
+        } else if (mu.speed1 > 0) {
+            mu.result = MATCH_RESULT.DRAW;
+        } else {
+            mu.result = MATCH_RESULT.UNDECIDED;
         }
 
         mu.state = MATCH_STATE.ENDED;
