@@ -75,8 +75,8 @@ contract PVE is PVBase {
         uint256 grade = gradeManager.getUserGrade(player);
         require(gradeRequested <= grade, "Unable to play on higher grade");
         (uint256 min1, uint256 max1) = getDepositRange(gradeRequested);
-        require(tokenAmount >= min1, "Deposit amount is too small");
-        require(tokenAmount <= max1, "Deposit amount is too large");
+        require(tokenAmount >= min1, "Deposit Amount Too Small");
+        require(tokenAmount <= max1, "Deposit Amount Too Large");
 
         mu.jackpot1 = tokenAmount;
         mu.grade1 = gradeRequested;
@@ -101,8 +101,8 @@ contract PVE is PVBase {
             userEarnedToken[player] += mu.jackpot2;
             totalEarnedToken += mu.jackpot2;
 
-            if (gradeRequested > 0) {
-                gradeManager.setGrade(player, gradeRequested - 1);
+            if (gradeRequested + 1 != grade) {
+                gradeManager.setGrade(player, gradeRequested + 1);
             }
 
             emit PrizeWinner(matchId, player, gradeRequested, mu.jackpot2, address(0), 0);
@@ -110,9 +110,10 @@ contract PVE is PVBase {
             userLostToken[player] += mu.jackpot1;
             totalLostToken += mu.jackpot1;
 
-            if (gradeRequested + 1 != grade) {
-                gradeManager.setGrade(player, gradeRequested + 1);
+            if (gradeRequested > 0) {
+                gradeManager.setGrade(player, gradeRequested - 1);
             }
+            
             emit PlayingDeposit(player, mu.jackpot1);
         } else if (mu.result == MATCH_RESULT.DRAW) {
             tokenContract.transfer(player, mu.jackpot1);

@@ -6,7 +6,7 @@ const { addressZero, bytes32Zero, maxUint256,
   WBNB, PancakeRouter, PancakeFactory, PBUSD,
   PVE, PVEProxy, PVP, PVPProxy, RandomUpgradeable, RandomProxy, NumericHelper,
   NFTManagerUpgradeable, NFTManagerProxy, Tournament, TournamentProxy,
-  LeaderBoard, LeaderBoardProxy, UserGradeManage, UserGradeManageProxy } = require('./const')
+  LeaderBoard, LeaderBoardProxy, UserGradeManage, UserGradeManageProxy, Type2EarnToken } = require('./const')
 
 const deploy_localhost = async (web3, deployer, accounts, specialAccounts) => {
     let network = 'localhost'
@@ -35,6 +35,7 @@ const deploy_localhost = async (web3, deployer, accounts, specialAccounts) => {
     let randomInfo = totalRet.find(t => t.name === "RandomUpgradeable")
     let numericInfo = totalRet.find(t => t.name === "NumericHelper")
     let nftInfo = totalRet.find(t => t.name === "NFTManagerUpgradeable")
+    let tokenInfo = totalRet.find(t => t.name === "Type2EarnToken")
 
     wbnbInfo = await deployContract(deployer, "WBNB", WBNB)
     totalRet = syncDeployInfo(network, "WBNB", wbnbInfo, totalRet)
@@ -58,6 +59,14 @@ const deploy_localhost = async (web3, deployer, accounts, specialAccounts) => {
                     {from: owner, value: "5000000000000000000000"})
 
     console.log('added BNB/PBUSD pair:', tx.receipt.transactionHash)
+
+    tokenInfo = await deployContract(deployer, "Type2EarnToken", Type2EarnToken, 
+            accounts,
+            ['10000000000000000000000', '10000000000000000000000', '10000000000000000000000', '10000000000000000000000', '10000000000000000000000',
+            '10000000000000000000000', '10000000000000000000000', '10000000000000000000000', '10000000000000000000000', '10000000000000000000000'],
+            '100000000000000000000',
+            routerInfo.imple)
+    totalRet = syncDeployInfo(network, "Type2EarnToken", tokenInfo, totalRet)
 
     pveInfo = await deployContractAndProxy(deployer, "PVE", PVE, PVEProxy, proxyAdmin, "initialize", [], []);
     totalRet = syncDeployInfo(network, "PVE", pveInfo, totalRet)
@@ -88,6 +97,18 @@ const deploy_localhost = async (web3, deployer, accounts, specialAccounts) => {
 
     userGradeManageInfo = await deployContractAndProxy(deployer, "UserGradeManage", UserGradeManage, UserGradeManageProxy, proxyAdmin, "initialize", [], []);
     totalRet = syncDeployInfo(network, "UserGradeManage", userGradeManageInfo, totalRet)
+
+    /**
+     * Initial configuration after deploy
+     */
+
+    let pvpContract = await PVP.at(pvpInfo.proxy)
+    tx = await pvpContract.updatePaymentToken(tokenInfo.imple)
+    tx = await pvpContract.updateGradeManager(userGradeManageInfo.proxy)
+
+    let tournamentContract = await Tournament.at(tournamentInfo.proxy)
+    tx = await tournamentContract.updatePaymentToken(tokenInfo.imple)
+    tx = await tournamentContract.updateGradeManager(userGradeManageInfo.proxy)
 }
 
 module.exports = { deploy_localhost }

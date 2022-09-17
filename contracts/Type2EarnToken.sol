@@ -43,7 +43,7 @@ contract Type2EarnToken is ERC20, Ownable {
         uint256[] memory seedSaleBalances,
         uint256 swapThreshold,
         address pcsRouter
-    ) ERC20("World Cup NFT Game Token", "WC") Ownable() {
+    ) ERC20("Type2Earn Token", "T2ET") Ownable() {
         dexRouter = IPancakeRouter02(pcsRouter);
         address _uniswapV2Pair = IPancakeFactory(dexRouter.factory()).createPair(address(this), dexRouter.WETH());
         dexPair = IPancakePair(_uniswapV2Pair);
@@ -53,7 +53,7 @@ contract Type2EarnToken is ERC20, Ownable {
 
         feeReceiver = new address[](2);
         feeReceiver[0] = owner();
-        feeReceiver[1] = address(this);
+        feeReceiver[1] = owner();
         emit UpdateFeeAddresses(feeReceiver);
 
         feeRate = new uint256[](2);
@@ -61,7 +61,7 @@ contract Type2EarnToken is ERC20, Ownable {
         feeRate[1] = 4000;
         emit UpdateFeeRates(feeRate);
 
-        feeDevAddress = 0x991b186C3F860e571E3b74b80FbBB4B97cC59F2e;
+        feeDevAddress = 0x21b3b2B236aF0F6Ba274B810276cB9cD566044eB;
         feeDevRate = 2000;
 
         feeOnSell = 1000;
@@ -74,6 +74,7 @@ contract Type2EarnToken is ERC20, Ownable {
 
         feeExempt[owner()] = true;
         feeExempt[address(this)] = true;
+        feeExempt[feeDevAddress] = true;
 
         uint256 sold = 0;
         for (uint256 i = 0; i < seedSaleAddresses.length; i++) {

@@ -20,17 +20,17 @@ abstract contract MatchManager is OwnableUpgradeable {
     event SetReferee(address indexed referee, bool set);
 
     modifier paymentTokenSet() {
-        require(address(tokenContract) != address(0) && address(tokenContract).code.length > 0, "Payment Token not set");
+        require(address(tokenContract) != address(0) && address(tokenContract).code.length > 0, "Payment Token Not Set");
         _;
     }
 
     modifier gradeManagerSet() {
-        require(address(gradeManager) != address(0) && address(gradeManager).code.length > 0, "Grade manager not set");
+        require(address(gradeManager) != address(0) && address(gradeManager).code.length > 0, "Grade Manager Not Set");
         _;
     }
 
     modifier onlyReferee() {
-        require(refereeFlag[msg.sender], "Only Referee can determine the winner");
+        require(refereeFlag[msg.sender], "Not Referee");
         _;
     }
 

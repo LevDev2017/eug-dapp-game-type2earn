@@ -24,11 +24,12 @@ const LeaderBoard = artifacts.require("LeaderBoard")
 const LeaderBoardProxy = artifacts.require("LeaderBoardProxy")
 const UserGradeManage = artifacts.require("UserGradeManage")
 const UserGradeManageProxy = artifacts.require("UserGradeManageProxy")
+const Type2EarnToken = artifacts.require("Type2EarnToken")
 
 module.exports = {
     addressZero, bytes32Zero, maxUint256,
     WBNB, PancakeRouter, PancakeFactory, PBUSD,
     PVE, PVEProxy, PVP, PVPProxy, RandomUpgradeable, RandomProxy, NumericHelper,
     NFTManagerUpgradeable, NFTManagerProxy, Tournament, TournamentProxy,
-    LeaderBoard, LeaderBoardProxy, UserGradeManage, UserGradeManageProxy
+    LeaderBoard, LeaderBoardProxy, UserGradeManage, UserGradeManageProxy, Type2EarnToken
 };
