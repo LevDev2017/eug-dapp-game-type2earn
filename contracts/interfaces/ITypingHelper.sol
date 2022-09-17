@@ -3,7 +3,6 @@ pragma solidity ^0.8.11;
 
 uint256 constant MAX_PLAYERS = 2000;
 uint256 constant MAXMINT_ONETIME = 5;
-uint256 constant TYPING_HELPER_COUNT = 5;
 uint256 constant MAX_STAMINA = 99;
 uint256 constant HELPER_CREATION_FEE = 20 * (10 ** 18);
 uint256 constant STAMINA_RECOVER_PERIOD = 10 minutes;
@@ -53,6 +52,7 @@ uint256 constant TOURNAMENT_REGISTER_PERIOD = 4 days;
 uint256 constant TOURNAMENT_REGISTER_FEE = 10 ** 18;
 uint256 constant TOURNAMENT_PRIZE = 100 * (10 ** 18);
 
+uint256 constant TYPING_HELPER_COUNT = 5;
 enum TYPING_HELPER_INDEX {
     UNMINTED,
     EXPLODE,

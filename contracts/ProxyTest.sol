@@ -29,6 +29,16 @@ contract TournamentProxy is TransparentUpgradeableProxy {
     }
 }
 
+contract LeaderBoardProxy is TransparentUpgradeableProxy {
+    constructor(address _logic, address _admin, bytes memory _params) TransparentUpgradeableProxy(_logic, _admin, _params) {
+    }
+}
+
+contract UserGradeManageProxy is TransparentUpgradeableProxy {
+    constructor(address _logic, address _admin, bytes memory _params) TransparentUpgradeableProxy(_logic, _admin, _params) {
+    }
+}
+
 contract PBUSD is ERC20 {
     constructor() ERC20("Pseudo BUSD", "PBUSD") {
         _mint(msg.sender, 1000000000 * (10 ** 18));

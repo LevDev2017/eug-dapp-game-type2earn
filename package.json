@@ -2,7 +2,7 @@
   "scripts": {
     "test": "truffle test",
     "dashboard": "truffle dashboard",
-    "ganache": "ganache-cli -m \"harvest pizza suit frown pull ahead relax figure couch pole immune fantasy\" -e 100000000",
+    "ganache": "ganache-cli -m \"vessel purchase bone blush smoke salt jaguar tragic subject mercy immune dial\" -e 100000000",
     "prettier": "npx prettier --write 'contracts/**/*.sol'",
     "remixd": "remixd -s $(pwd) -u https://remix.ethereum.org",
     "shopTransactions": "truffle exec ./scripts/Shop_Interaction.js --network dashboard",
