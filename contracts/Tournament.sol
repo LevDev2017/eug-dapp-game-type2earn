@@ -170,7 +170,7 @@ contract Tournament is Initializable, MatchManager {
                 PlayerEntity memory team1 = participants[1 + (participantCount - k2) + playerIdArray[i]];
                 mu.player1 = team1.player;
                 PlayerEntity memory team2 = participants[1 + (participantCount - k2) + playerIdArray[i + 1]];
-                mu.player1 = team2.player;
+                mu.player2 = team2.player;
                 mu.result = MATCH_RESULT.UNDECIDED;
 
                 level[matchCount] = currentLevel;
@@ -245,7 +245,11 @@ contract Tournament is Initializable, MatchManager {
             // organize matches for atheletes
             currentLevel ++;
 
-            uint256[] memory playerIdArray = shuffleTeams(participantCount);
+            //uint256[] memory playerIdArray = shuffleTeams(participantCount);
+            uint256[] memory playerIdArray = new uint256[](participantCount);
+            for (i = 0; i < participantCount; i ++) {
+                playerIdArray[i] = i;
+            }
 
             uint256 startIdx = matchCount + 1;
             for (i = 0; i < playerIdArray.length; i += 2) {
@@ -374,7 +378,7 @@ contract Tournament is Initializable, MatchManager {
         return ret;
     }
 
-    function getMatchesAtLevel(uint256 queryLevel) external view returns(MatchUnit[] memory) {
+    function getMatchesAtLevel(uint256 queryLevel) external view returns(uint256[] memory, MatchUnit[] memory) {
         uint256 i;
         uint256 queryCount = 0;
         for (i = 0; i < matchCount; i ++) {
@@ -382,15 +386,18 @@ contract Tournament is Initializable, MatchManager {
         }
 
         MatchUnit[] memory ret = new MatchUnit[](queryCount);
+        uint256[] memory idArrayRet = new uint256[](queryCount);
+
         uint256 k = 0;
         for (i = 0; i < matchCount; i ++) {
             if (level[i + 1] == queryLevel) {
-                ret[k] = matchInfo[i + 1];
+                idArrayRet[k] = i + 1;
+                ret[k] = matchInfo[idArrayRet[k]];
                 k ++;
             }
         }
 
-        return ret;
+        return (idArrayRet, ret);
     }
 
     function getParticipantsInfo(uint256[] memory participantIdArray) public view virtual returns (PlayerEntity[] memory) {

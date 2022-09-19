@@ -24,6 +24,7 @@ let errorMessages = {
     insufficientAllowance: "ERC20: insufficient allowance",
     upgradeFailed: 'Not allowed to upgrade a user',
     playedEnough: 'You played enough',
+    notFighting: 'Registering, not fighting',
 }
 
 const BN2Decimal = (t, decimal) => {
@@ -477,8 +478,137 @@ contract("Tournament", accounts => {
         await checkTransactionPassed(tournamentContract.updatePaymentToken(tokenContract.address))
     })
 
-    it("Player Registration", async () => {
+    it("Player 1 Registration", async () => {
         await checkTransactionPassed(tokenContract.approve(tournamentContract.address, maxUint256, {from: accounts[0]}))
         await checkTransactionPassed(tournamentContract.registerPlayer({from: accounts[0]}))
+    })
+
+    it("9 Players Registration", async () => {
+        let i
+        for (i = 1; i < 10; i ++) {
+            await checkTransactionPassed(tokenContract.approve(tournamentContract.address, maxUint256, {from: accounts[i]}))
+            await checkTransactionPassed(tournamentContract.registerPlayer({from: accounts[i]}))
+        }
+    })
+
+    it ("Not Referee", async () => {
+        await checkTransactionFailed(tournamentContract.initializeTournament({from: accounts[9]}), errorMessages.notReferee)
+    })
+
+    it ("Update Referee", async () => {
+        await checkTransactionPassed(tournamentContract.enableReferee(accounts[9], true, {from: accounts[0]}))
+    })
+
+    it ("Registering, not fighting", async () => {
+        await checkTransactionFailed(tournamentContract.initializeTournament({from: accounts[9]}), errorMessages.notFighting)
+    })
+
+    it ("Entering fighting period", async () => {
+        await advanceTimeAndBlock(86400 * 5)
+    })
+
+    it ("Set LeaderBoard updater", async () => {
+        await checkTransactionPassed(leaderBoardContract.setUpdater(tournamentContract.address, true, { from: accounts[0] }))
+    })
+
+    it ("Token deposit for winner's prize", async () => {
+        await checkTransactionPassed(tokenContract.transfer(tournamentContract.address, '1000000000000000000000', { from: accounts[0] }))
+    })
+
+    it ("Initialize Tournament", async () => {
+        await checkTransactionPassed(tournamentContract.initializeTournament({from: accounts[9]}))
+    })
+
+    it ("Finalizing the current level", async () => {
+        let curLevel = parseInt((await tournamentContract.currentLevel()).toString())
+        let ret = await tournamentContract.getMatchesAtLevel(curLevel)
+        let idArray = ret['0'].map(t => parseInt(t.toString()))
+        let matchArray = ret['1'].map((t, idx) => {
+            return {
+                index: idArray[idx],
+                ...t
+            }
+        })
+
+        console.log("current level:", curLevel, "with", matchArray.length, "matches")
+
+        await Promise.all(matchArray.map(async t => {
+            return checkTransactionPassed(tournamentContract.updateMatchResult(t.index, 53554, 45643, { from: accounts[9] }))
+        }))
+        await checkTransactionPassed(tournamentContract.runMatch(idArray[0], idArray[idArray.length - 1], { from: accounts[9] }))
+        await checkTransactionPassed(tournamentContract.nextLevel({from: accounts[9]}))
+    })
+
+    it ("Finalizing the current level", async () => {
+        let curLevel = parseInt((await tournamentContract.currentLevel()).toString())
+        let ret = await tournamentContract.getMatchesAtLevel(curLevel)
+        let idArray = ret['0'].map(t => parseInt(t.toString()))
+        let matchArray = ret['1'].map((t, idx) => {
+            return {
+                index: idArray[idx],
+                ...t
+            }
+        })
+
+        console.log("current level:", curLevel, "with", matchArray.length, "matches")
+
+        await Promise.all(matchArray.map(async t => {
+            return checkTransactionPassed(tournamentContract.updateMatchResult(t.index, 53554, 45643, { from: accounts[9] }))
+        }))
+        await checkTransactionPassed(tournamentContract.runMatch(idArray[0], idArray[idArray.length - 1], { from: accounts[9] }))
+        await checkTransactionPassed(tournamentContract.nextLevel({from: accounts[9]}))
+    })
+
+    it ("Finalizing the current level", async () => {
+        let curLevel = parseInt((await tournamentContract.currentLevel()).toString())
+        let ret = await tournamentContract.getMatchesAtLevel(curLevel)
+        let idArray = ret['0'].map(t => parseInt(t.toString()))
+        let matchArray = ret['1'].map((t, idx) => {
+            return {
+                index: idArray[idx],
+                ...t
+            }
+        })
+
+        console.log("current level:", curLevel, "with", matchArray.length, "matches")
+
+        await Promise.all(matchArray.map(async t => {
+            return checkTransactionPassed(tournamentContract.updateMatchResult(t.index, 53554, 45643, { from: accounts[9] }))
+        }))
+        await checkTransactionPassed(tournamentContract.runMatch(idArray[0], idArray[idArray.length - 1], { from: accounts[9] }))
+        await checkTransactionPassed(tournamentContract.nextLevel({from: accounts[9]}))
+    })
+
+    it ("Finalizing the current level", async () => {
+        let curLevel = parseInt((await tournamentContract.currentLevel()).toString())
+        let ret = await tournamentContract.getMatchesAtLevel(curLevel)
+        let idArray = ret['0'].map(t => parseInt(t.toString()))
+        let matchArray = ret['1'].map((t, idx) => {
+            return {
+                index: idArray[idx],
+                ...t
+            }
+        })
+
+        console.log("current level:", curLevel, "with", matchArray.length, "matches")
+
+        await Promise.all(matchArray.map(async t => {
+            return checkTransactionPassed(tournamentContract.updateMatchResult(t.index, 53554, 45643, { from: accounts[9] }))
+        }))
+        await checkTransactionPassed(tournamentContract.runMatch(idArray[0], idArray[idArray.length - 1], { from: accounts[9] }))
+        await checkTransactionPassed(tournamentContract.nextLevel({from: accounts[9]}))
+
+        assert.strictEqual(matchArray.length, 1, "Not ended tournament");
+
+        let winner = await tournamentContract.getParticipantsInfo([1])
+        let prize = await tournamentContract.prize()
+        console.log('winner:', winner[0].player, ", Prize:", BN2Decimal(prize))
+
+        console.log("LeaderBoard")
+        let i
+        for (i = 0; i < 10; i ++) {
+            let score = parseInt((await leaderBoardContract.getScore(accounts[i])).toString())
+            console.log(i + 1, accounts[i], score)
+        }
     })
 })
