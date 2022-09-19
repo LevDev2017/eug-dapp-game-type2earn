@@ -112,7 +112,7 @@ contract Tournament is Initializable, MatchManager {
         emit ResetTimeReference();
     }
 
-    function registerTeam() external registering paymentTokenSet {
+    function registerPlayer() external registering paymentTokenSet {
         participantCount ++;
         require(currentLevel == 0, "Inconsistency detected");
         participants[participantCount] = PlayerEntity({

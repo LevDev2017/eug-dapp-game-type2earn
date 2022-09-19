@@ -8,15 +8,14 @@ contract PVP is PVBase {
         __PVBase_init();
     }
 
-    function registerPlayer1(uint256 matchId, uint256 gradeRequested, uint256 tokenAmount) external paymentTokenSet gradeManagerSet {
+    function registerPlayer1(uint256 matchId, uint256 tokenAmount) external paymentTokenSet gradeManagerSet {
         MatchUnit storage mu = matchInfo[matchId];
         address player = msg.sender;
 
         require(mu.state == MATCH_STATE.UNINITIALIZED || mu.state == MATCH_STATE.ENDED, "Already set");
-        uint256 grade = gradeManager.getUserGrade(player);
-        require(gradeRequested <= grade, "Unable to play on higher grade");
+        uint256 gradeRequested = gradeManager.getUserGrade(player);
         (uint256 min1, ) = getDepositRange(gradeRequested);
-        require(tokenAmount >= min1, "Deposit amount is too small");
+        require(tokenAmount >= min1, "Deposit Amount Too Small");
 
         mu.jackpot1 = tokenAmount;
         mu.grade1 = gradeRequested;
@@ -35,15 +34,14 @@ contract PVP is PVBase {
         require(epochPlayTimes[epoch][player] <= maxPlayTimesPerEpoch, "You played enough");
     }
 
-    function registerPlayer2(uint256 matchId, uint256 gradeRequested, uint256 tokenAmount) external paymentTokenSet gradeManagerSet {
+    function registerPlayer2(uint256 matchId, uint256 tokenAmount) external paymentTokenSet gradeManagerSet {
         MatchUnit storage mu = matchInfo[matchId];
         address player = msg.sender;
 
         require(mu.state == MATCH_STATE.PLAYER1_READY, "Already set");
-        uint256 grade = gradeManager.getUserGrade(player);
-        require(gradeRequested <= grade, "Unable to play on higher grade");
+        uint256 gradeRequested = gradeManager.getUserGrade(player);
         (uint256 min1, ) = getDepositRange(gradeRequested);
-        require(tokenAmount >= min1, "Deposit amount is too small");
+        require(tokenAmount >= min1, "Deposit Amount Too Small");
 
         mu.jackpot2 = tokenAmount;
         mu.grade2 = gradeRequested;
@@ -104,7 +102,7 @@ contract PVP is PVBase {
                 tokenContract.transfer(mu.player2, mu.jackpot2 + mu.jackpot1);
                 jackpot1 = mu.jackpot1;
             }
-            
+
             userEarnedToken[mu.player2] += jackpot1;
             userLostToken[mu.player1] += jackpot1;
             totalEarnedToken += jackpot1;

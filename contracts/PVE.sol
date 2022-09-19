@@ -113,7 +113,7 @@ contract PVE is PVBase {
             if (gradeRequested > 0) {
                 gradeManager.setGrade(player, gradeRequested - 1);
             }
-            
+
             emit PlayingDeposit(player, mu.jackpot1);
         } else if (mu.result == MATCH_RESULT.DRAW) {
             tokenContract.transfer(player, mu.jackpot1);
@@ -127,7 +127,7 @@ contract PVE is PVBase {
         require(epochPlayTimes[epoch][player] <= maxPlayTimesPerEpoch, "You played enough");
     }
 
-    function getSinglePlayerMatchInfo(address user) external view returns(MatchUnit memory) {
+    function getPVEMatchInfo(address user) external view returns(MatchUnit memory) {
         uint256[] memory t = new uint256[](1);
         t[0] = uint256(uint160(user));
 

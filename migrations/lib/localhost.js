@@ -55,6 +55,9 @@ const deploy_localhost = async (web3, deployer, accounts, specialAccounts) => {
 
     let routerContract = await PancakeRouter.at(routerInfo.imple)
 
+    let wethAddr = await routerContract.WETH()
+    console.log('WETH:', wethAddr)
+
     tx = await routerContract.addLiquidityETH(pbusdInfo.imple, "1000000000000000000000000", 0, 0, addressZero, '0xffffffff',
                     {from: owner, value: "5000000000000000000000"})
 
@@ -101,14 +104,6 @@ const deploy_localhost = async (web3, deployer, accounts, specialAccounts) => {
     /**
      * Initial configuration after deploy
      */
-
-    let pvpContract = await PVP.at(pvpInfo.proxy)
-    tx = await pvpContract.updatePaymentToken(tokenInfo.imple)
-    tx = await pvpContract.updateGradeManager(userGradeManageInfo.proxy)
-
-    let tournamentContract = await Tournament.at(tournamentInfo.proxy)
-    tx = await tournamentContract.updatePaymentToken(tokenInfo.imple)
-    tx = await tournamentContract.updateGradeManager(userGradeManageInfo.proxy)
 }
 
 module.exports = { deploy_localhost }
