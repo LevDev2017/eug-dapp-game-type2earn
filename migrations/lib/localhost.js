@@ -54,12 +54,15 @@ const deploy_localhost = async (web3, deployer, accounts, specialAccounts) => {
     console.log('approved PBUSD for pancake router:', tx.receipt.transactionHash)
 
     let routerContract = await PancakeRouter.at(routerInfo.imple)
+    let factoryContract = await PancakeFactory.at(factoryInfo.imple)
 
     let wethAddr = await routerContract.WETH()
     console.log('WETH:', wethAddr)
 
-    tx = await routerContract.addLiquidityETH(pbusdInfo.imple, "1000000000000000000000000", 0, 0, addressZero, '0xffffffff',
-                    {from: owner, value: "5000000000000000000000"})
+    console.log("Pancake Factory Pair HASH:", await factoryContract.INIT_CODE_PAIR_HASH())
+
+    tx = await routerContract.addLiquidityETH(pbusdInfo.imple, "10000000000000000000000", 0, 0, addressZero, '0xffffffff',
+                    {from: owner, value: "50000000000000000000"})
 
     console.log('added BNB/PBUSD pair:', tx.receipt.transactionHash)
 
