@@ -25,7 +25,7 @@ contract NFTManagerUpgradeable is
     CountersUpgradeable.Counter private _nftCounter;
 
     function initialize(address numHelper) external initializer {
-        __ERC721_init("World Cup Game NFT", "WCN");
+        __ERC721_init("Type To Earn Game NFT", "TTENFT");
         __Ownable_init();
         __ERC721Enumerable_init();
         __ReentrancyGuard_init();

@@ -83,11 +83,8 @@ const deploy_localhost = async (web3, deployer, accounts, specialAccounts) => {
     randomInfo = await deployContractAndProxy(deployer, "RandomUpgradeable", RandomUpgradeable, RandomProxy, proxyAdmin, "initialize", [], []);
     totalRet = syncDeployInfo(network, "RandomUpgradeable", randomInfo, totalRet)
 
-    let rand = await RandomUpgradeable.at(randomInfo.proxy)
-    tx = await rand.setRouter(routerInfo.imple)
-    console.log("set router for random generator:", tx.receipt.transactionHash)
-    tx = await rand.setPair(await routerContract.WETH(), pbusdInfo.imple)
-    console.log("set pair for random generator:", tx.receipt.transactionHash)
+    let randContract = await RandomUpgradeable.at(randomInfo.proxy)
+    await randContract.updateChainlink(addressZero)
 
     numericInfo = await deployContract(deployer, "NumericHelper", NumericHelper, randomInfo.proxy);
     totalRet = syncDeployInfo(network, "NumericHelper", numericInfo, totalRet)

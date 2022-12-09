@@ -6,8 +6,8 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
-interface IDEXRouter2 {
-    function getAmountsOut(uint256 amount, address[] memory) external pure returns (uint256[] memory);
+interface IChainlinkPrice {
+    function latestRoundData() external view returns (uint80, int256, uint256, uint256, uint80);
 }
 
 contract RandomUpgradeable is
@@ -18,10 +18,7 @@ contract RandomUpgradeable is
     uint256[10] private randSeed;
     uint256 private randIndex;
 
-    address public router;
-    address public pairLeft;
-    address public pairRight;
-    uint256 public refAmount;
+    IChainlinkPrice public chainlink;
 
     function initialize() external initializer {
         __Ownable_init();
@@ -30,37 +27,23 @@ contract RandomUpgradeable is
         // Initialize contract
         randIndex = 0;
 
-        router = 0x10ED43C718714eb63d5aA57B78B54704E256024E; // pancakeswap router v2
-        pairLeft = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c; // WBNB
-        pairRight = 0x55d398326f99059fF775485246999027B3197955; // USDT
-        refAmount = 10 ** 18; // 1 BNB
+        // https://docs.chain.link/docs/data-feeds/price-feeds/addresses
+        chainlink = IChainlinkPrice(0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419); // chainlink contracts on ethereum mainnet
     }
 
-    function setRouter(address _router) external onlyOwner {
-        router = _router;
-    }
-
-    function setPair(address left, address right) external onlyOwner {
-        require(left != address(0) && right != address(0), "pair token should not be null");
-        pairLeft = left;
-        pairRight = right;
-    }
-
-    function setReferenceAmount(uint256 _amount) external onlyOwner {
-        refAmount = _amount;
+    function updateChainlink(address _int) external onlyOwner {
+        require(address(chainlink) != _int, "Already set");
+        chainlink = IChainlinkPrice(_int);
     }
 
     function generateNextRandomVariable() public whenNotPaused returns (uint256) {
         uint256 tPrice = 0;
 
-        if (router != address(0) && pairLeft != address(0) && pairRight != address(0)) {
-            address [] memory tpair = new address[](2);
-            tpair[0] = pairLeft;
-            tpair[1] = pairRight;
-
-            uint256 rval = refAmount;
-            uint256 [] memory tret = IDEXRouter2(router).getAmountsOut(rval, tpair);
-            tPrice = tret[1];
+        if (address(chainlink) != address(0)) {
+            try chainlink.latestRoundData() returns (uint80, int256 ret, uint256, uint256, uint80) {
+                tPrice = uint256(ret);
+            } catch {
+            }
         }
 
         uint256 tval = (block.timestamp << 224);
@@ -83,5 +66,16 @@ contract RandomUpgradeable is
             generateNextRandomVariable();
         }
     }
-}
 
+    function getChainlinkPrice() external view returns (uint256) {
+        uint256 tPrice = 0;
+        if (address(chainlink) != address(0)) {
+            try chainlink.latestRoundData() returns (uint80, int256 ret, uint256, uint256, uint80) {
+                tPrice = uint256(ret);
+            } catch {
+            }
+        }
+
+        return tPrice;
+    }
+}
