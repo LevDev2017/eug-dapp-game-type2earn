@@ -18,7 +18,8 @@ export const WalletProvider = (props) => {
 
     const [wallet, setWallet] = useState({
         address: '',
-        chainId: 0
+        chainId: 0,
+        connector: 'null-connector'
     });
 
     const defWallet = useWallet();
@@ -87,7 +88,8 @@ export const WalletProvider = (props) => {
                 return {
                     ...t,
                     address: defWallet.account,
-                    chainId: defWallet.chainId
+                    chainId: defWallet.chainId,
+                    connector: defWallet.connector
                 }
             }
         })
@@ -120,17 +122,35 @@ export const WalletProvider = (props) => {
 
     const connectWallet = async (w) => {
         if (w === 'injected') {
-            await defWallet.connect();
-            
+            await defWallet.connect()
+
             if (defWallet._web3ReactContext.library === undefined || defWallet.chainId !== parseInt(walletConfig[chainId].chainId, 16)) {
                 await connectWalletByConfig()
-    
+
                 if (w === 'injected') await defWallet.connect();
                 else await defWallet.connect(w);
             }
         }
         else await defWallet.connect(w);
+
+        setWallet(t => {
+            return {
+                ...t,
+                connector: w
+            }
+        })
     }
+
+    useEffect(() => {
+        console.log('>>>', wallet.connector, defWallet, chainId, wallet.chainId)
+        if (wallet.connector === 'injected' && (defWallet._web3ReactContext.library === undefined || chainId !== wallet.chainId)) {
+            connectWalletByConfig()
+                .then(() => { 
+                    defWallet.connect()
+                })
+                .catch(err => { })
+        }
+    }, [chainId])
 
     const disconnectWallet = () => {
         defWallet.reset();

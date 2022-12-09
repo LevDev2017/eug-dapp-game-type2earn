@@ -321,6 +321,17 @@ export const ContractProvider = (props) => {
         return tx;
     }, [makeTx, ADDRESS, chainId, D2A])
 
+    const giftToken = useCallback(async (receiver, amount) => {
+        const web3 = window.web3;
+
+        const presaleContract = new web3.eth.Contract(Presale_abi.abi, ADDRESS[chainId].presale);
+        let cTokenAddress = await presaleContract.methods.cToken().call()
+        let coinAmountToCharge = await D2A(cTokenAddress, amount)
+        let tx = await makeTx(ADDRESS[chainId].presale, presaleContract.methods.gift(receiver, coinAmountToCharge));
+
+        return tx;
+    }, [makeTx, ADDRESS, chainId, D2A])
+
     const launchPresale = useCallback(async (startAfter, duration) => {
         const web3 = window.web3;
 
@@ -427,7 +438,7 @@ export const ContractProvider = (props) => {
             getMinAmountPerWallet, getMaxAmountPerWallet, getTokenDistributed, getPresaleCoinBalance,
             getCoinApprovedAmount, approvePresaleCoin, claimPublic, launchPresale, expandPresale,
             updatePrice, updateMinMaxTokenPerWallet, updateTotalCap, updateTokens,
-            updateCoinReceiver, transferOwnership
+            updateCoinReceiver, transferOwnership, giftToken
         }}>
             {props.children}
         </ContractContext.Provider>

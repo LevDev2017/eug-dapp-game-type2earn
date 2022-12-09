@@ -10,8 +10,8 @@ import { WalletConnect } from '../WalletConnect'
 import { SwitchChain } from '../SwitchChain'
 import { DocView } from '../DocView'
 import { useWindowSize } from '../../hooks/useWindowSize'
-import { useContract } from '../../contexts/ContractContext'
-import { useCustomWallet } from '../../contexts/WalletContext'
+// import { useContract } from '../../contexts/ContractContext'
+// import { useCustomWallet } from '../../contexts/WalletContext'
 
 export const Home = (props) => {
   const w = useWindowSize()
@@ -19,8 +19,6 @@ export const Home = (props) => {
   const [walletConnect, setWalletConnect] = useState(false)
   const [chainSelView, switchChain] = useState(false)
   const [docView, setDocView] = useState(false)
-
-  const { isLoggedIn, disconnectWallet } = useCustomWallet()
 
   return (
     <HomeContainer>

@@ -349,6 +349,8 @@ export const PresalePaneContainer = styled.div`
         font-weight: 800;
         text-align: center;
 
+        user-select: none;
+
         background: linear-gradient(275.5deg,#07befa 10.87%,#754dc8 47.12%,#f53d84 71.89%,#fe7f32 99.3%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;

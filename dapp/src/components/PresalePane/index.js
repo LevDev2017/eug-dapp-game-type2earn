@@ -19,6 +19,7 @@ import MinMaxUpdate from './MinMaxUpdate'
 import TokenAddresses from './TokenAddresses'
 import CoinReceiver from './CoinReceiver'
 import Ownership from './TransferOwnership'
+import Airdrop from './Airdrop'
 
 import moment from 'moment'
 
@@ -29,9 +30,8 @@ export const PresalePane = (props) => {
     getTotalAmountSold, getMinAmountPerWallet, getMaxAmountPerWallet, getTokenDistributed,  
     getPresaleCoinBalance, getCoinApprovedAmount, approvePresaleCoin,
     claimPublic} = useContract()
-  const { chainId } = useGlobal()
 
-  const { stringFormat } = useGlobal()
+  const { stringFormat, chainId } = useGlobal()
   const { toastError, showLoading, hideLoading, toastSuccess } = useToast()
   const { isLoggedIn, wallet } = useCustomWallet()
 
@@ -217,7 +217,7 @@ export const PresalePane = (props) => {
     return () => ac.abort();
   }, [reloadCounter, wallet.address, getVTokenSymbol, getPresaleCoinSymbol, getTokenPrice, 
     getPresaleOwner, getStartTimestamp, getEndTimestamp, getTotalSellAmount, getTotalAmountSold, getVTokenAddress,
-    getMinAmountPerWallet, getMaxAmountPerWallet, getTokenDistributed, getPresaleCoinBalance, getCoinApprovedAmount])
+    getMinAmountPerWallet, getMaxAmountPerWallet, getTokenDistributed, getPresaleCoinBalance, getCoinApprovedAmount, chainId])
 
   useEffect(() => {
     setOwner(contractOwner.toLowerCase() === wallet.address.toLowerCase())
@@ -410,7 +410,7 @@ export const PresalePane = (props) => {
               </div>
             </div>
           </div>
-          <div className='p1-frame'>
+          {/* <div className='p1-frame'>
             <div className='row-1 row-center'>
               <div className='flip-time-prefix'>
                 {
@@ -422,7 +422,7 @@ export const PresalePane = (props) => {
               </div>
               {presaleStep < 2 && <FlipDate value={flipTime} aggregateNumber={setFlipDateNumbers} onEndProc={refreshPages}/>}
             </div>
-          </div>
+          </div> */}
           { presaleStep !== 2 &&
             <div className='p1-frame'>
               <div className='grid-2'>
@@ -466,14 +466,18 @@ export const PresalePane = (props) => {
         <div className='summary-frame'>
           <div className='p1-frame padding-20 margin-8 info-frame-1'>
             <div className={`token-contract ${isLoggedIn() === true ? "" : "unconnected"}`} onClick={handleAddveTokenToWallet}>Add ${vTokenName} to metamask</div>
-            <a href={`${walletConfig[chainId].blockUrls[0]}token/${vTokenAddress}`} target='_blank' rel='noreferrer' style={{ textDecoration: 'none' }} className='token-address'>
+            {/* <a href={`${walletConfig[chainId].blockUrls[0]}token/${vTokenAddress}`} target='_blank' rel='noreferrer' style={{ textDecoration: 'none' }} className='token-address'>
               {vTokenAddress}
-            </a>
+            </a> */}
+            <div style={{ textDecoration: 'none' }} className='token-address'>
+              {vTokenAddress}
+            </div>
           </div>
         </div>
 
         {
-          isOwner === true && <>
+          isOwner === true && 
+          <>
             <div className='admin-panel-label'>Admin Panel</div>
             <div className='admin-grid-2'>
               <Launch />
@@ -482,6 +486,7 @@ export const PresalePane = (props) => {
               <TokenAddresses />
               <CoinReceiver />
               <Ownership />
+              <Airdrop />
             </div>
           </>
         }
