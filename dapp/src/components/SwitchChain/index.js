@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useCallback } from 'react'
-import { useCustomWallet } from '../../contexts/WalletContext'
+// import { useCustomWallet } from '../../contexts/WalletContext'
 import {
   SwitchChainContainer
 } from './styles'
@@ -12,13 +12,11 @@ export const SwitchChain = (props) => {
   const { close } = props;
 
   const ht = useRef();
-  const { disconnectWallet } = useCustomWallet()
   const { setChainIndex, chainId } = useGlobal()
 
   const handleEthereumSelect = () => {
     if (chainId !== 1) {
       setChainIndex && setChainIndex(0);
-      disconnectWallet()
     }
     close && close();
   }
@@ -26,7 +24,6 @@ export const SwitchChain = (props) => {
   const handleBSCSelect = () => {
     if (chainId !== 56) {
       setChainIndex && setChainIndex(1);
-      disconnectWallet()
     }
 
     close && close();

@@ -58,6 +58,7 @@ export const BackgroundImageContainer = styled.div`
     background-repeat: no-repeat;
     background-position: center 0;
     background-size: cover;
+    opacity: 0.2;
     color: #fff;
   }
 

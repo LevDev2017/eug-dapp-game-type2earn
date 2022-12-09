@@ -27,7 +27,7 @@ export const DocView = ({close}) => {
       <div className='top-frame' ref={ht}>
         <div className='subtitle'>
           Litepaper
-          <i class="fa-solid fa-circle-xmark close" onClick={close}></i>
+          <i className="fa-solid fa-circle-xmark close" onClick={close}></i>
         </div>
         <div className='summary-frame'>
           <div className='pdf-frame'>
