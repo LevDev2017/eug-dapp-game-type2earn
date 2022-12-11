@@ -55,6 +55,8 @@ export const ThemeProvider = ({ children, ...props }) => {
       color: ${props => props.theme.colors?.headingColor || '#C4C4C4'};
 
       transition: all 0.8s ease-in-out;
+
+      overflow-x: hidden;
     }
 
     input, textarea, button {

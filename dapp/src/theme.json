@@ -19,6 +19,18 @@
     "sidebar": {
       "name": "Poppins",
       "weights": [300, 400, 500, 600, 700, 800]
+    },
+    "header": {
+      "name": "Inter"
+    },
+    "bgbutton": {
+      "name": "Rubik"
+    },
+    "welcome": {
+      "name": "Chakra Petch"
+    },
+    "russo": {
+      "name": "Russo One"
     }
   },
   "colors": {
@@ -32,7 +44,7 @@
     "white": "#FFFFFF",
     "headingColor": "#CCC",
     "textColor": "#C4C4C4",
-    "mainCover": "#181818"
+    "mainCover": "#0E052D"
   },
   "consts": {
     "header_h": "64px",
