@@ -8,6 +8,8 @@ export const AvatarContainer = styled.div`
     background-size: 100% 100%;
     background-position: 0% 0%;
 
+    height: 100%;
+
     padding: 20px;
     display: grid;
     grid-template-columns: max-content max-content;
@@ -18,10 +20,16 @@ export const AvatarContainer = styled.div`
         "a b"
         "a c";
     
-    .avatar {
+    .column-align {
         grid-area: a;
 
-        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .avatar {
+            border-radius: 50%;
+        }
     }
 
     .bnb-balance {

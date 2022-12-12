@@ -13,11 +13,13 @@ import ValueLabel from '../../ValueLabel'
 const Avatar = (props) => {
     return (
         <AvatarContainer>
-            <img src={AvatarSamplePNG} alt='' className='avatar'/>
+            <div className='column-align'>
+                <img src={AvatarSamplePNG} alt='' className='avatar'/>
+            </div>
             <div className='bnb-balance'>
                 <ValueLabel label='3,012' icon={<img src={BNBSVG} alt='' />}/>
             </div>
-            <div className='tte-balance value-frame'>
+            <div className='tte-balance'>
                 <ValueLabel label='1,000,000' icon={<img src={TTESVG} alt='' />}/>
             </div>
         </AvatarContainer>
