@@ -55,7 +55,7 @@ export const HeaderItemContainer = styled.div`
         gap: 10px;
 
         text-decoration: none;
-        color: white;
+        color: ${props => props.selected === true? '#fff' : props.def === true? '#61F908': '#53555C'};
 
         &:hover {
             color: #61F908;

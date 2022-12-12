@@ -10,7 +10,7 @@ const HeaderItem = (props) => {
     const { selected, icon, label, link, def, desc } = props
 
     return (
-        <HeaderItemContainer selected={selected === undefined? false: true} def={def === undefined? false: true}>
+        <HeaderItemContainer selected={selected === undefined? false: selected} def={def === undefined? false: def}>
             {
                 selected === true &&
                 <div className='selected-bar'></div>

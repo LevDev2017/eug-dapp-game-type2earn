@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import BuyButtonSVG from '../../../../assets/svg/buy-button-frame.svg'
+import ConnectBackSVG from '../../../assets/svg/connect.svg'
 
-export const BuyButtonContainer = styled.div`
-    padding: 15px 15px;
-    background: url(${BuyButtonSVG});
+export const ConnectButtonContainer = styled.div`
+    padding: 15px 30px;
+    background: url(${ConnectBackSVG});
     background-size: 100% 100%;
 
     font-family: 'Rubik';

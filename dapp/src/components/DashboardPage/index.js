@@ -5,7 +5,7 @@ import {
 } from './styles'
 
 import Header from '../Header'
-import TopBar from './TopBar'
+import TopBar from '../TopBar'
 import Avatar from './Avatar'
 import WelcomePane from './WelcomePane'
 import PriceChart from './PriceChart'
