@@ -7,7 +7,11 @@ import {
 import Logo from './Logo'
 import BgButton from '../../BgButton'
 
+import { useNavigate } from 'react-router-dom'
+
 const Header = (props) => {
+    const navigate = useNavigate()
+
     return (
         <HeaderContainer>
             <Logo />
@@ -18,7 +22,7 @@ const Header = (props) => {
             <a href='#team' className='menu-item'>Team</a>
             <a href='#roadmap' className='menu-item'>Roadmap</a>
             <a href='#contact' className='menu-item'>Contact</a>
-            <BgButton label='launch app'/>
+            <BgButton label='launch app' onClick={() => {navigate('/dashboard')}}/>
         </HeaderContainer>
     )
 }
