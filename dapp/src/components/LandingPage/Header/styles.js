@@ -35,6 +35,9 @@ export const HeaderContainer = styled.div`
 
         cursor: pointer;
         user-select: none;
+        text-decoration: none;
+
+        color: #fff;
 
         &:hover {
             color: #ffccaa;

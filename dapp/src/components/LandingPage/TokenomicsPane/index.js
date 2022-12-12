@@ -13,7 +13,7 @@ import TokenomicsItem from './TokenomicsItem'
 const TokenomicsPane = (props) => {
     return (
         <TokenomicsPaneContainer>
-            <img src={TokenomicsLayout1SVG} alt='' />
+            <img id='tokenomics' src={TokenomicsLayout1SVG} alt='' />
             <div className='content-frame'>
                 <div className='left-frame'>
                     <div>
@@ -38,7 +38,7 @@ const TokenomicsPane = (props) => {
                     </div>
                 </div>
             </div>
-            <img src={TokenomicsLayout2SVG} alt='' />
+            <img id='team' src={TokenomicsLayout2SVG} alt='' />
         </TokenomicsPaneContainer>
     )
 }

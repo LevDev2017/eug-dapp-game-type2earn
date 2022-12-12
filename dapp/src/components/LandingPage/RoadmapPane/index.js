@@ -12,11 +12,11 @@ import RoadmapContent from './RoadmapContent'
 const RoadmapPane = (props) => {
     return (
         <RoadmapPaneContainer>
-            <div className='bar-frame'>
+            <div id='roadmap' className='bar-frame'>
                 <img src={Bar1SVG} alt='' />
             </div>
             <RoadmapContent />
-            <div className='bar-frame off-6px'>
+            <div id='contact' className='bar-frame off-6px'>
                 <img src={Bar2SVG} alt='' />
             </div>
         </RoadmapPaneContainer>

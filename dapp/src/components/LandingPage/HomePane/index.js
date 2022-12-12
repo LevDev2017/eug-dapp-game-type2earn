@@ -52,7 +52,7 @@ const HomePane = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className='clip-footer'>
+                <div id='about-us' className='clip-footer'>
                     <img src={FooterSVG} alt='' style={{position: 'relative', top: '6px'}}/>
                 </div>
             </div>

@@ -15,7 +15,7 @@ import Feature4SVG from '../../../assets/svg/feature4.svg'
 const FeaturesPane = (props) => {
     return (
         <FeaturesPaneContainer>
-            <div className='headline'>
+            <div id='features' className='headline'>
                 <img src={FeaturesPNG} alt='' />
             </div>
             <div className='titles'>
