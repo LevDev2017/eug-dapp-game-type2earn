@@ -32,7 +32,10 @@ export const WalletConnect = (props) => {
   }, [close])
 
   useEffect(() => {
-    window.addEventListener('click', handleClickOutside)
+    setTimeout(() => {
+      window.addEventListener('click', handleClickOutside)
+    }, 200)
+    
     return () => window.removeEventListener('click', handleClickOutside)
   }, [handleClickOutside])
 

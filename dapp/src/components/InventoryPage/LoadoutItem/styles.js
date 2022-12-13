@@ -56,6 +56,14 @@ export const LoadoutItemContainer = styled.div`
         transform: translate(-50%, 0);
     }
 
+    .select-show {
+        display: block;
+    }
+
+    .select-hide {
+        display: none;
+    }
+
     .select-back {
         position: absolute;
 

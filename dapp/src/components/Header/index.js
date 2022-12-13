@@ -16,6 +16,10 @@ import { LeaderboardSVG } from '../SvgIcons'
 import { StakingSVG } from '../SvgIcons'
 import { useLocation } from 'react-router-dom'
 
+import Twitter1SVG from '../../assets/svg/twitter1.svg'
+import Telegram1SVG from '../../assets/svg/telegram1.svg'
+import Discord1SVG from '../../assets/svg/discord1.svg'
+
 const Header = (props) => {
     const location = useLocation()
 
@@ -46,6 +50,18 @@ const Header = (props) => {
             <HeaderItem icon={<TournamentSVG />} label='tournament' link={routerPaths[4]} selected={selectedIndex === 5} />
             <HeaderItem icon={<LeaderboardSVG />} label='leaderboard' link={routerPaths[5]} selected={selectedIndex === 6} />
             <HeaderItem icon={<StakingSVG />} label='staking' link={routerPaths[6]} selected={selectedIndex === 7} desc='SOON'/>
+
+            <div className='social-frame'>
+                <a href='https://twitter.com' target='_blank' rel='noreferrer'>
+                    <img src={Twitter1SVG} alt='' />
+                </a>
+                <a href='https://web.telegram.org' target='_blank' rel='noreferrer'>
+                    <img src={Telegram1SVG} alt='' />
+                </a>
+                <a href='https://discord.com' target='_blank' rel='noreferrer'>
+                    <img src={Discord1SVG} alt='' />
+                </a>
+            </div>
         </HeaderContainer>
     )
 }

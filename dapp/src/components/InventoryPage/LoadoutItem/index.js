@@ -20,12 +20,12 @@ const LoadoutItem = (props) => {
                 setSelect(false)
             }
 
-            myRef.current.addEventListener('mouseover', onmouseover, true)
-            myRef.current.addEventListener('mouseout', onmouseout, true)
+            myRef.current?.addEventListener('mouseover', onmouseover, true)
+            myRef.current?.addEventListener('mouseout', onmouseout, true)
 
             return () => {
-                myRef.current.removeEventListener('mouseover', onmouseover, true)
-                myRef.current.removeEventListener('mouseout', onmouseout, true)
+                myRef.current?.removeEventListener('mouseover', onmouseover, true)
+                myRef.current?.removeEventListener('mouseout', onmouseout, true)
             }
         }
     }, [myRef.current, inUse])
@@ -41,13 +41,10 @@ const LoadoutItem = (props) => {
                     <div className='in-use'>in use</div>
                 </>
             }
-            {
-                select === true &&
-                <>
-                    <div className='select-back'></div>
-                    <div className='select' onClick={handleSelect? handleSelect: () => {}}>select</div>
-                </>
-            }
+            <div className={select === true? 'select-show': 'select-hide'}>
+                <div className='select-back'></div>
+                <div className='select' onClick={handleSelect? handleSelect: () => {}}>select</div>
+            </div>
         </LoadoutItemContainer>
     )
 }

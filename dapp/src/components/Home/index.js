@@ -17,6 +17,8 @@ import { useWindowSize } from '../../hooks/useWindowSize'
 import LandingPage from '../LandingPage'
 import DashboardPage from '../DashboardPage'
 import InventoryPage from '../InventoryPage'
+import PvePage from '../PvePage'
+import PvpPage from '../PvpPage'
 
 export const Home = (props) => {
   const w = useWindowSize()
@@ -31,6 +33,8 @@ export const Home = (props) => {
         <Route exact path='/' element={<LandingPage />}></Route>
         <Route exact path='/dashboard' element={<DashboardPage />}></Route>
         <Route exact path='/inventory' element={<InventoryPage />}></Route>
+        <Route exact path='/pve' element={<PvePage />}></Route>
+        <Route exact path='/pvp' element={<PvpPage />}></Route>
       </Routes>
       {walletConnect === true && <WalletConnect close={() => setWalletConnect(false)} />}
       {chainSelView === true && <SwitchChain close={() => switchChain(false)} />}

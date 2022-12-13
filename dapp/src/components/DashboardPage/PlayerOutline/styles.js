@@ -27,4 +27,21 @@ export const PlayerOutlineContainer = styled.div`
         line-height: 28px;
         text-transform: capitalize;
     }
+
+    .loadout {
+        position: absolute;
+
+        left: 50%;
+        top: 50%;
+
+        transform: translate(-50%, -50%);
+    }
+
+    .show {
+        display: block;
+    }
+
+    .hide {
+        display: none;
+    }
 `
