@@ -1,19 +1,16 @@
 import styled from 'styled-components'
 
 export const PlayerOutlineContainer = styled.div`
-    width: 100%;
-    height: 100%;
-
     position: relative;
 
-    img {
-        height: 100%;
+    .back-image-frame {
+        width: 300px;
     }
 
     .stand-image {
         position: absolute;
         left: 50%;
-        bottom: -2px;
+        bottom: 2px;
         transform: translate(-50%, 0);
     }
 

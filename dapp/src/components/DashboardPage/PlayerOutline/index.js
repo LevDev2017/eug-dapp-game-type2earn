@@ -10,7 +10,7 @@ import StandPNG from '../../../assets/images/stand.png'
 const PlayerOutline = (props) => {
     return (
         <PlayerOutlineContainer>
-            <img src={PlayerOutlineSVG} alt='' />
+            <img src={PlayerOutlineSVG} alt='' className='back-image-frame'/>
             <div className='stand-image'>
                 <img src={StandPNG} alt='' />
             </div> 

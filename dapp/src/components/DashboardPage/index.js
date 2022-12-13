@@ -31,7 +31,7 @@ const DashboardPage = (props) => {
                 </div>
                 <PriceChart />
                 <div className='multi-panes'>
-                    <div style={{gridArea: 'a'}}>
+                    <div style={{gridArea: 'a'}} className='col-center'>
                         <PlayerOutline />
                     </div>
                     <div style={{gridArea: 'b'}}>

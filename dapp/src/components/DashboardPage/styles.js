@@ -34,6 +34,13 @@ export const DashboardPageContainer = styled.div`
                 "d e e";
             column-gap: 40px;
             row-gap: 40px;
+
+            .col-center {
+                display: flex;
+                flex-direction: column;
+
+                justify-content: center;
+            }
         }
     }
 `
