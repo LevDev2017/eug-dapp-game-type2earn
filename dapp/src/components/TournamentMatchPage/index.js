@@ -12,6 +12,7 @@ import TTESVG from '../../assets/svg/tte-logo.svg'
 import BNBSVG from '../../assets/svg/bnb-logo.svg'
 import { Link } from 'react-router-dom'
 import MatchPane from './MatchPane'
+import FinalPane from './FinalPane'
 
 const TournamentMatchPage = (props) => {
     const { category } = props
@@ -43,7 +44,7 @@ const TournamentMatchPage = (props) => {
                     <MatchPane />
                     :
                     category === 'final'?
-                    <></>
+                    <FinalPane />
                     :
                     <></>
                 }
