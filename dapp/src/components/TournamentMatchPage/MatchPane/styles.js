@@ -77,4 +77,15 @@ export const MatchPaneContainer = styled.div`
     .padding-top-100 {
         padding-top: 100px;
     }
+
+    .relative {
+        position: relative;
+    }
+
+    .opponent-label {
+        position: absolute;
+        top: -100px;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
 `

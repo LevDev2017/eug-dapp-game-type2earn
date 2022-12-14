@@ -33,7 +33,8 @@ const MatchPane = (props) => {
                         <div className='small-label capitalize'>next round starting in</div>
                         <div className='big-label'>00:15:30</div>
                     </div>
-                    <div className='col-frame align-center'>
+                    <div className='col-frame align-center relative'>
+                        <div className='small-label uppercase opponent-label'>your next opponent</div>
                         <PlayerOutline icon={StandPNG} id='1383'/>
                         <div className='label'>Antoin Fuder</div>
                         <div className='row-frame justify-center'>
