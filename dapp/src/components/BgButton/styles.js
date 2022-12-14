@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 import BgButtonSVG from '../../assets/svg/bg_button.svg'
+import BgButtonDisabledSVG from '../../assets/svg/bg_button_disabled.svg'
 import BgButtonDenseSVG from '../../assets/svg/bg_button_dense.svg'
 
 export const BgButtonContainer = styled.div`
-    background: url(${props => props.dense !== undefined? BgButtonDenseSVG: BgButtonSVG});
+    background: url(${props => props.disabled === true? BgButtonDisabledSVG: props.dense === true? BgButtonDenseSVG: BgButtonSVG});
     background-size: 100% 100%;
 
     width: 210px;
@@ -19,17 +20,17 @@ export const BgButtonContainer = styled.div`
     text-transform: capitalize;
     white-space: nowrap;
 
-    color: ${props => props.dense !== undefined? '#000': '#fff'};
+    color: ${props => props.disabled === true? '#ccc' : props.dense === true? '#000': '#fff'};
 
     transition: all .2s ease-in-out;
     cursor: pointer;
     user-select: none;
 
     &:hover {
-        color: ${props => props.dense !== undefined? '#365': '#cfa'};
+        color: ${props => props.disabled === true? '#ccc' : props.dense === true? '#365': '#cfa'};
     }
 
     &:active {
-        color: ${props => props.dense !== undefined? '#afa': '#264'};
+        color: ${props => props.disabled === true? '#ccc' : props.dense === true? '#afa': '#264'};
     }
 `

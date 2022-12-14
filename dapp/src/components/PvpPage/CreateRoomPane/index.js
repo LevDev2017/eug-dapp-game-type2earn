@@ -18,7 +18,6 @@ const PlayPane = (props) => {
     const handleClickOutside = useCallback((e) => {
         const outSideMenu = !myRef.current?.contains(e.target)
         if (outSideMenu) {
-            console.log('>>>')
             close && close();
         }
     }, [close, myRef.current])

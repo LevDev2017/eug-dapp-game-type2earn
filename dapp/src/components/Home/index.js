@@ -19,6 +19,7 @@ import DashboardPage from '../DashboardPage'
 import InventoryPage from '../InventoryPage'
 import PvePage from '../PvePage'
 import PvpPage from '../PvpPage'
+import TournamentPage from '../TournamentPage'
 
 export const Home = (props) => {
   const w = useWindowSize()
@@ -35,6 +36,7 @@ export const Home = (props) => {
         <Route exact path='/inventory' element={<InventoryPage />}></Route>
         <Route exact path='/pve' element={<PvePage />}></Route>
         <Route exact path='/pvp' element={<PvpPage />}></Route>
+        <Route exact path='/tournament' element={<TournamentPage />}></Route>
       </Routes>
       {walletConnect === true && <WalletConnect close={() => setWalletConnect(false)} />}
       {chainSelView === true && <SwitchChain close={() => switchChain(false)} />}

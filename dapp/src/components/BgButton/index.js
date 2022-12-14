@@ -5,10 +5,10 @@ import {
 } from './styles'
 
 const BgButton = (props) => {
-    const { label, dense, onClick } = props
+    const { label, dense, disabled, onClick } = props
 
     return (
-        <BgButtonContainer dense={dense} onClick={onClick}>
+        <BgButtonContainer dense={dense === true? true: false} disabled={disabled === true? true: false} onClick={disabled === true? () => {}: onClick}>
             {label && <div className='bg-button-label'>{label}</div>}
         </BgButtonContainer>
     )
