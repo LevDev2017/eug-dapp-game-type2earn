@@ -37,7 +37,7 @@ const PvpPage = (props) => {
                 <div className='row-frame'>
                     <div className='col-frame align-center max-width-300'>
                         <div className='player-outline'>
-                            <PlayerOutline />
+                            <PlayerOutline icon={StandPNG} id='1382' loadout={true} />
                         </div>
                         <div className='player-description'>You can create or join room to fight against other player.<br/>Winner will get all reward from bet pool. Now let’s show some skill!</div>
                         <SpButton label='create room' handleClick={() => setShowCreateRoom(true)}/>

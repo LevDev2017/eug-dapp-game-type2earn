@@ -20,6 +20,7 @@ import InventoryPage from '../InventoryPage'
 import PvePage from '../PvePage'
 import PvpPage from '../PvpPage'
 import TournamentPage from '../TournamentPage'
+import TournamentMatchPage from '../TournamentMatchPage'
 
 export const Home = (props) => {
   const w = useWindowSize()
@@ -37,6 +38,8 @@ export const Home = (props) => {
         <Route exact path='/pve' element={<PvePage />}></Route>
         <Route exact path='/pvp' element={<PvpPage />}></Route>
         <Route exact path='/tournament' element={<TournamentPage />}></Route>
+        <Route exact path='/tournament/match' element={<TournamentMatchPage category='match'/>}></Route>
+        <Route exact path='/tournament/final' element={<TournamentMatchPage category='final'/>}></Route>
       </Routes>
       {walletConnect === true && <WalletConnect close={() => setWalletConnect(false)} />}
       {chainSelView === true && <SwitchChain close={() => switchChain(false)} />}

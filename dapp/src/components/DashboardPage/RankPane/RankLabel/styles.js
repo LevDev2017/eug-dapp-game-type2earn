@@ -22,6 +22,10 @@ export const RankLabelContainer = styled.div`
     .image-frame {
         position: relative;
 
+        img {
+            max-width: 200px;
+        }
+
         .value {
             position: absolute;
             
@@ -29,11 +33,8 @@ export const RankLabelContainer = styled.div`
             top: 50%;
             transform: translate(-50%, -50%);
 
-            font-family: 'Rubik';
-            font-style: normal;
             font-weight: 700;
-            font-size: 40px;
-            line-height: 47px;
+            font-size: 32px;
             text-align: center;
             text-transform: capitalize;
         }

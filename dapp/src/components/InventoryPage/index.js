@@ -23,6 +23,7 @@ import L7PNG from '../../assets/images/stand7.png'
 import L8PNG from '../../assets/images/stand8.png'
 import L9PNG from '../../assets/images/stand9.png'
 import L10PNG from '../../assets/images/stand10.png'
+import StandPNG from '../../assets/images/stand.png'
 
 import LoadoutItem from './LoadoutItem'
 
@@ -56,7 +57,7 @@ const InventoryPage = (props) => {
                 </div>
                 <div className='row-frame frame-2'>
                     <div className='col-frame stand-out-frame'>
-                        <PlayerOutline />
+                        <PlayerOutline icon={StandPNG} id='1382' />
                         <div className='row-frame'>
                             <img src={SPSVG} alt='' />
                             <div className='col-frame variable-item gap-5'>

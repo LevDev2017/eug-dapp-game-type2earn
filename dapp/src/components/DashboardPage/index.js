@@ -15,6 +15,8 @@ import UpcomingTournament from './UpcomingTournament'
 import Notification from './Notification'
 import History from './History'
 
+import StandPNG from '../../assets/images/stand.png'
+
 const DashboardPage = (props) => {
     return (
         <DashboardPageContainer>
@@ -32,7 +34,7 @@ const DashboardPage = (props) => {
                 <PriceChart />
                 <div className='multi-panes'>
                     <div style={{gridArea: 'a'}} className='col-center'>
-                        <PlayerOutline />
+                        <PlayerOutline icon={StandPNG} id='1382' loadout={true} />
                     </div>
                     <div style={{gridArea: 'b'}}>
                         <RankPane />
