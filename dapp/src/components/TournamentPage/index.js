@@ -15,10 +15,12 @@ import GoldStarPNG from '../../assets/images/gold-star.png'
 import BlueStarPNG from '../../assets/images/blue-star.png'
 import BronzeStarPNG from '../../assets/images/bronze-star.png'
 import ModalPane from './ModalPane'
+import { useNavigate } from 'react-router-dom'
 
 const TournamentPage = (props) => {
     const [updateFlag, setUpdateFlag] = useState(false)
     const [showModal, setShowModal] = useState(false)
+    const navigate = useNavigate()
     
     return (
         <TournamentPageContainer>
@@ -82,7 +84,16 @@ const TournamentPage = (props) => {
                     </div>
                 </div>
             </div>
-            {showModal === true && <ModalPane close={() => setShowModal(false)}/>}
+            {
+                showModal === true &&
+                <ModalPane close={() => setShowModal(false)} handleClick={() => {
+                    setShowModal(false)
+
+                    setTimeout(() => {
+                        navigate('/tournament/match')
+                    }, 1000)
+                }}/>
+            }
         </TournamentPageContainer>
     )
 }
