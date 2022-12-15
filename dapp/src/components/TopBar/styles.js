@@ -35,4 +35,28 @@ export const TopBarContainer = styled.div`
 
         color: #191C25;
     }
+
+    .disconnect-wallet {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        cursor: pointer;
+        
+        svg {
+            fill: #fffc;
+        }
+
+        &:hover {
+            svg {
+                fill: #fff;
+            }
+        }
+
+        &:active {
+            svg {
+                fill: #fff4;
+            }
+        }
+    }
 `

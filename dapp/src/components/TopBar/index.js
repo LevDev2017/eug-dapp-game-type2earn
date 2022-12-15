@@ -6,6 +6,7 @@ import {
 
 import ConnectButton from './ConnectButton'
 import BuyButton from './BuyButton'
+import { ExitSVG } from '../SvgIcons'
 
 const TopBar = (props) => {
     const [connected, setConnected] = useState(false)
@@ -21,6 +22,9 @@ const TopBar = (props) => {
                         <BuyButton />
                         <div className='wallet-address'>
                             <span>0xa6...1234</span>
+                        </div>
+                        <div className='disconnect-wallet' onClick={() => setConnected(false)}>
+                            <ExitSVG />
                         </div>
                     </>
             }

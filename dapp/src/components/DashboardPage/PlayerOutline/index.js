@@ -40,7 +40,7 @@ const PlayerOutline = (props) => {
             <div className='stand-image'>
                 <img src={icon} alt='' />
             </div> 
-            <div className='id-field'>#{id}</div>
+            {id && <div className='id-field'>#{id}</div>}
             <div className={`loadout ${hover === true && loadout === true? 'show': 'hide'}`}>
                 <SpButton icon={<img src={RefreshSVG} alt='' />} label='loadout' handleClick={() => navigate('/inventory')}/>
             </div>

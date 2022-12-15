@@ -59,45 +59,45 @@ export const PvePageContainer = styled.div`
                     text-transform: capitalize;
                 }
             }
+
+            .leave-room-link {
+                color: white;
+                text-decoration: none;
+            }
         }
 
-        .remaining-frame {
-            text-align: center;
+        .typing-bar {
+            width: 100%;
+            height: 2px;
+            background: #fff2;
 
-            font-family: 'Rubik';
-            font-style: normal;
-            font-weight: 500;
-            font-size: 24px;
-            line-height: 28px;
+            position: relative;
 
+            .typing-progress {
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                right: 60%;
+
+                background: #61F908;
+            }
+        }
+
+        .typing-content {
+            font-size: 20px;
+            word-break: break-all;
             text-transform: uppercase;
 
-            span {
-                padding-left: 20px;
-                color: #61F908;
-            }
+            position: relative;
         }
 
-        .level-frame {
+        .typed-area {
+            position: absolute;
+            left: 0;
+            top: 0;
             width: 100%;
-
-            overflow-y: hidden;
-            overflow-x: auto;
-
-            .level-contents {
-                display: flex;
-                flex-direction: row;
-
-                flex-gap: 10px;
-                gap: 10px;
-            }
-        }
-
-        .play-frame {
-            display: flex;
-            flex-direction: row;
-
-            justify-content: center;
+            height: 100%;
         }
     }
 `

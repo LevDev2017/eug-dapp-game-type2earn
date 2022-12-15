@@ -48,7 +48,7 @@ const Header = (props) => {
             <HeaderItem icon={<PVESVG />} label='pvE' link={routerPaths[2]} selected={selectedIndex === 3} />
             <HeaderItem icon={<PVPSVG />} label='pvP' link={routerPaths[3]} selected={selectedIndex === 4} />
             <HeaderItem icon={<TournamentSVG />} label='tournament' link={routerPaths[4]} selected={selectedIndex === 5} />
-            <HeaderItem icon={<LeaderboardSVG />} label='leaderboard' link={routerPaths[5]} selected={selectedIndex === 6} />
+            <HeaderItem icon={<LeaderboardSVG category='pve'/>} label='leaderboard' link={routerPaths[5]} selected={selectedIndex === 6} />
             <HeaderItem icon={<StakingSVG />} label='staking' link={routerPaths[6]} selected={selectedIndex === 7} desc='SOON'/>
 
             <div className='social-frame'>

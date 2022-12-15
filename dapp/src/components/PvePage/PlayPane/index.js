@@ -6,8 +6,10 @@ import {
 
 import PlayPaneTopBarSVG from '../../../assets/svg/playpane-topbar.svg'
 import BgButton from '../../BgButton'
+import { useNavigate } from 'react-router-dom'
 
 const PlayPane = (props) => {
+    const navigate = useNavigate()
     const [error, setError] = useState('')
     const [amount, setAmount] = useState('')
 
@@ -27,7 +29,12 @@ const PlayPane = (props) => {
                         <div className='reward-label'>estimated reward</div>
                         <div className='reward-label'>0 $tte</div>
                     </div>
-                    <BgButton label='PLAY' onClick={() => setError('Insufficient Funds')} dense/>
+                    <BgButton label='PLAY' onClick={() => {
+                        setError('Insufficient Funds')
+                        setTimeout(() => {
+                            navigate('/pve/match')
+                        }, [1000])
+                    }} dense/>
                 </div>
             </div>
         </PlayPaneContainer>

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const TournamentMatchPageContainer = styled.div`
+export const LeaderboardPageContainer = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -57,28 +57,8 @@ export const TournamentMatchPageContainer = styled.div`
             flex: 1 1 0;
         }
 
-        .frame-1 {
-            .label-frame {
-                .big-label {
-                    font-family: 'Rubik';
-                    font-style: normal;
-                    font-weight: 500;
-                    font-size: 40px;
-                    line-height: 60px;
-                    text-transform: uppercase;
-                }
-
-                .small-label {
-                    font-family: 'Rubik';
-                    font-style: normal;
-                    font-weight: 700;
-                    font-size: 20px;
-                    line-height: 24px;
-                    /* identical to box height */
-
-                    text-transform: capitalize;
-                }
-            }
+        .green {
+            color: #61F908 !important;
         }
 
         .category-label {
@@ -111,8 +91,15 @@ export const TournamentMatchPageContainer = styled.div`
             }
         }
 
-        .green {
-            color: #61F908;
+        .ranking-frame {
+            display: flex;
+            flex-direction: column;
+
+            flex-gap: 6px;
+            gap: 6px;
+
+            overflow-x: hidden;
+            overflow-y: auto;
         }
     }
 `
