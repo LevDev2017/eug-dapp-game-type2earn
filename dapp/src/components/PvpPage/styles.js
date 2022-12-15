@@ -53,7 +53,7 @@ export const PvpPageContainer = styled.div`
                     line-height: 60px;
                     text-transform: uppercase;
                 }
-
+    
                 .small-label {
                     font-family: 'Rubik';
                     font-style: normal;
@@ -61,73 +61,10 @@ export const PvpPageContainer = styled.div`
                     font-size: 20px;
                     line-height: 24px;
                     /* identical to box height */
-
+    
                     text-transform: capitalize;
                 }
             }
-        }
-
-        .player-outline {
-            padding-top: 100px;
-        }
-
-        .max-width-300 {
-            max-width: 300px;
-        }
-
-        .remaining-frame {
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 28px;
-
-            white-space: nowrap;
-
-            text-transform: uppercase;
-
-            span {
-                padding-left: 10px;
-                font-size: 24px;
-                color: #61F908;
-            }
-        }
-
-        .player-description {
-            font-size: 16px;
-            padding: 0px 20px;
-            text-align: center;
-        }
-
-        .search-input {
-            max-width: 200px;
-
-            outline: none;
-            border: none;
-            background: #fff4;
-
-            font-size: 16px;
-
-            text-align: right;
-            padding: 10px 20px;
-            border-radius: 12px;
-
-            color: #fff;
-
-            ::placeholder {
-                color: #fff4;
-            }
-        }
-
-        .room-frame {
-            display: flex;
-            flex-direction: column;
-
-            flex-gap: 6px;
-            gap: 6px;
-
-            max-height: 500px;
-
-            overflow-x: hidden;
-            overflow-y: auto;
         }
     }
 `

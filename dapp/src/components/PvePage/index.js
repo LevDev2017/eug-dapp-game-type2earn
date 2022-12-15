@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import {
@@ -14,9 +14,11 @@ import BNBSVG from '../../assets/svg/bnb-logo.svg'
 import PreparePane from './PreparePane'
 import MatchPane from './MatchPane'
 import SpButton from '../SpButton'
+import ResultModal from '../ResultModal'
 
 const PvePage = (props) => {
     const { category } = props
+    const [showModal, setShowModal] = useState(false)
 
     return (
         <PvePageContainer>
@@ -45,11 +47,12 @@ const PvePage = (props) => {
                     ? <PreparePane />
                     :
                     category === 'match'
-                    ? <MatchPane />
+                    ? <MatchPane handleResult={() => setShowModal(true)} />
                     :
                     <></>
                 }
             </div>
+            { showModal === true && <ResultModal close={() => setShowModal(false)} result='ok' label1='congratulation!' label2='you win!' label3='+ 1000 $TTE' icon={TTESVG} handleClick={() => setShowModal(false)}/>}
         </PvePageContainer>
     )
 }

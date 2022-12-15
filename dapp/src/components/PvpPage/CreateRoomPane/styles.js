@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const PlayPaneContainer = styled.div`
+export const CreateRoomPaneContainer = styled.div`
     .ambient-dark {
         position: fixed;
         z-index: 50;

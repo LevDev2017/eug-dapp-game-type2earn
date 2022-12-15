@@ -1,19 +1,21 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react'
 
 import {
-    PlayPaneContainer
+    CreateRoomPaneContainer
 } from './styles'
 
-import PlayPaneTopBarSVG from '../../../assets/svg/playpane-topbar.svg'
+import CreateRoomPaneTopBarSVG from '../../../assets/svg/playpane-topbar.svg'
 import BgButton from '../../BgButton'
+import { useNavigate } from 'react-router-dom'
 
-const PlayPane = (props) => {
+const CreateRoomPane = (props) => {
     const { close } = props
 
     const [error, setError] = useState('')
     const [amount, setAmount] = useState('')
 
     const myRef = useRef()
+    const navigate = useNavigate()
 
     const handleClickOutside = useCallback((e) => {
         const outSideMenu = !myRef.current?.contains(e.target)
@@ -31,10 +33,10 @@ const PlayPane = (props) => {
     }, [handleClickOutside])
 
     return (
-        <PlayPaneContainer>
+        <CreateRoomPaneContainer>
             <div className='ambient-dark'></div>
             <div className='model-frame' ref={myRef}>
-                <img src={PlayPaneTopBarSVG} alt='' />
+                <img src={CreateRoomPaneTopBarSVG} alt='' />
                 <div className='content-frame'>
                     <div className='label1'>bet amount ($tte)</div>
                     <div className='tte-input-frame'>
@@ -61,12 +63,17 @@ const PlayPane = (props) => {
                         </div>
                     </div>
                     <div className='confirm-frame'>
-                        <BgButton label='confirm' onClick={() => setError('Insufficient Funds')} dense />
+                        <BgButton label='confirm' onClick={() => {
+                            setError('Insufficient Funds')
+                            setTimeout(() => {
+                                navigate('/pvp/match/0')
+                            }, 1000)
+                        }} dense />
                     </div>
                 </div>
             </div>
-        </PlayPaneContainer>
+        </CreateRoomPaneContainer>
     )
 }
 
-export default PlayPane;
+export default CreateRoomPane;

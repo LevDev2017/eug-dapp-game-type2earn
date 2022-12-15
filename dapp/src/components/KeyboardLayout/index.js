@@ -5,7 +5,7 @@ import {
 } from './styles'
 
 const KeyboardLayout = (props) => {
-    const { dispatch, enabled } = props
+    const { dispatch, selectedChar, enabled } = props
 
     const [keyParams, setKeyParams] = useState([
         {key: '1', key2: '1', row: 1, selected: false},
@@ -47,13 +47,12 @@ const KeyboardLayout = (props) => {
         {key: ' ', key2: ' ', row: 5, selected: false},
     ])
 
-    const keyPressHandler = useCallback(ch => {
+    useEffect(() => {
         let k
         let ret = []
         for (k of keyParams) {
-            if (k.key.toUpperCase() === ch.toUpperCase()) {
+            if (k.key.toUpperCase() === selectedChar.toUpperCase()) {
                 k.selected = true
-                dispatch && dispatch(ch)
             } else {
                 k.selected = false
             }
@@ -62,6 +61,15 @@ const KeyboardLayout = (props) => {
         }
 
         setKeyParams(ret)
+    }, [selectedChar])
+
+    const keyPressHandler = useCallback(ch => {
+        let k
+        for (k of keyParams) {
+            if (k.key.toUpperCase() === ch.toUpperCase()) {
+                dispatch && dispatch(k.key)
+            }
+        }
     }, [keyParams, dispatch])
 
     useEffect(() => {

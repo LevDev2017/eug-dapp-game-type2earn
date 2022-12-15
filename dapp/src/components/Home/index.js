@@ -38,7 +38,8 @@ export const Home = (props) => {
         <Route exact path='/inventory' element={<InventoryPage />}></Route>
         <Route exact path='/pve' element={<PvePage category='prepare' />}></Route>
         <Route exact path='/pve/match' element={<PvePage category='match' />}></Route>
-        <Route exact path='/pvp' element={<PvpPage />}></Route>
+        <Route exact path='/pvp' element={<PvpPage category='prepare' />}></Route>
+        <Route exact path='/pvp/match/:id' element={<PvpPage category='match'/>}></Route>
         <Route exact path='/tournament' element={<TournamentPage />}></Route>
         <Route exact path='/tournament/match' element={<TournamentMatchPage category='match'/>}></Route>
         <Route exact path='/tournament/final' element={<TournamentMatchPage category='final'/>}></Route>

@@ -6,15 +6,14 @@ import {
 
 import PlayerOutline from '../../DashboardPage/PlayerOutline'
 import StandPNG from '../../../assets/images/stand.png'
-import RobotPNG from '../../../assets/images/3d-robot 1.png'
 import SPSVG from '../../../assets/svg/sp-mark-2.svg'
 import KeyboardLayout from '../../KeyboardLayout'
 import ProgressBar from '../../ProgressBar'
+import RankLabel from '../../DashboardPage/RankPane/RankLabel'
 
 const MatchPane = (props) => {
     const { handleResult } = props
-
-    const [counter, setCounter] = useState(10)
+    const [counter, setCounter] = useState(20)
     const [typingText, setTypingText] = useState('')
     const [typedText, setTypedText] = useState('')
     const [percent, setPercent] = useState(0)
@@ -25,7 +24,7 @@ const MatchPane = (props) => {
                 setCounter(t => t - 1)
             }, [1000])
         } else {
-            setTypingText('this pve game is designed to have fun for typists')
+            setTypingText('this pvp game is designed to fight against other human player')
             setTypedText('')
         }
     }, [counter])
@@ -42,7 +41,8 @@ const MatchPane = (props) => {
         if (typingText.length === 0) setPercent(0)
         else setPercent(Math.round(typedText.length * 100 * 100 / typingText.length) / 100)
 
-        if (typingText.length > 0 && typedText.length == typingText.length ) {
+        if (typingText.length > 0 && typedText.length == typingText.length) {
+            // close
             setTimeout(() => {
                 handleResult && handleResult()
                 setTypedText('')
@@ -68,6 +68,13 @@ const MatchPane = (props) => {
                                 <div className='line-2'>You just need to type QWERTYYUIOPP</div>
                             </div>
                         </div>
+                        {
+                            counter > 0 && 
+                            <div className='row-frame'>
+                                <RankLabel label='typist rank' value='10241'/>
+                                <RankLabel label='PvP rank' value='234'/>
+                            </div>
+                        }
                     </div>
                     <div className='col-frame align-center'>
                         {
@@ -82,15 +89,41 @@ const MatchPane = (props) => {
                                 </div>
                             </>
                             :
+                            counter <= 10?
                             <>
                                 <div className='small-label capitalize'>get ready<br/>the game will start in</div>
                                 <div className='big-label green'>{counter}</div>
                             </>
+                            :
+                            <>
+                                <div className='big-label capitalize'>waiting for an opponent to join</div>
+                            </>
                         }
                     </div>
                     <div className='col-frame align-center relative'>
-                        <div className='small-label uppercase opponent-label'></div>
-                        <PlayerOutline icon={RobotPNG} id=''/>
+                        {
+                            counter <= 10 &&
+                            <div className='small-label uppercase opponent-label'>Antoine Fuder</div>
+                        }
+                        <PlayerOutline icon={counter <= 10? StandPNG: undefined} id=''/>
+                        {
+                            counter <= 10 && <>
+                                <div className='row-frame'>
+                                    <img src={SPSVG} alt='' />
+                                    <div className='col-frame variable-item gap-5'>
+                                        <div className='line-1'>Special Skill</div>
+                                        <div className='line-2'>You just need to type QWERTYYUIOPP</div>
+                                    </div>
+                                </div>
+                                {
+                                    counter > 0 && 
+                                    <div className='row-frame'>
+                                        <RankLabel label='typist rank' value='10241'/>
+                                        <RankLabel label='PvP rank' value='234'/>
+                                    </div>
+                                }
+                            </>
+                        }
                     </div>
                 </div>
                 <div className='row-frame justify-center'>

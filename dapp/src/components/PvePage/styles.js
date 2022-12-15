@@ -65,39 +65,5 @@ export const PvePageContainer = styled.div`
                 text-decoration: none;
             }
         }
-
-        .typing-bar {
-            width: 100%;
-            height: 2px;
-            background: #fff2;
-
-            position: relative;
-
-            .typing-progress {
-                position: absolute;
-                left: 0;
-                top: 0;
-                bottom: 0;
-                right: 60%;
-
-                background: #61F908;
-            }
-        }
-
-        .typing-content {
-            font-size: 20px;
-            word-break: break-all;
-            text-transform: uppercase;
-
-            position: relative;
-        }
-
-        .typed-area {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-        }
     }
 `
