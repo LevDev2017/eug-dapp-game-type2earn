@@ -88,4 +88,20 @@ export const MatchPaneContainer = styled.div`
         left: 50%;
         transform: translate(-50%, 0);
     }
+
+    .typing-content {
+        font-size: 20px;
+        word-break: break-all;
+        text-transform: uppercase;
+
+        position: relative;
+    }
+
+    .typed-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
 `

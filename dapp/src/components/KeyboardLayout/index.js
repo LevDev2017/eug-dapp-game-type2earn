@@ -91,35 +91,35 @@ const KeyboardLayout = (props) => {
             <div className='key-row'>
                 {
                     keyParams.filter(k => k.row === 1).map((k, idx) => {
-                        return <div key={idx} className={`key ${k.selected === true? 'green': ''}`}>{k.key}</div>
+                        return <div key={idx} className={`key ${k.selected === true? 'green-2': ''}`}>{k.key}</div>
                     })
                 }
             </div>
             <div className='key-row'>
                 {
                     keyParams.filter(k => k.row === 2).map((k, idx) => {
-                        return <div key={idx} className={`key ${k.selected === true? 'green': ''}`}>{k.key}</div>
+                        return <div key={idx} className={`key ${k.selected === true? 'green-2': ''}`}>{k.key}</div>
                     })
                 }
             </div>
             <div className='key-row'>
                 {
                     keyParams.filter(k => k.row === 3).map((k, idx) => {
-                        return <div key={idx} className={`key ${k.selected === true? 'green': ''}`}>{k.key}</div>
+                        return <div key={idx} className={`key ${k.selected === true? 'green-2': ''}`}>{k.key}</div>
                     })
                 }
             </div>
             <div className='key-row'>
                 {
                     keyParams.filter(k => k.row === 4).map((k, idx) => {
-                        return <div key={idx} className={`key ${k.selected === true? 'green': ''}`}>{k.key}</div>
+                        return <div key={idx} className={`key ${k.selected === true? 'green-2': ''}`}>{k.key}</div>
                     })
                 }
             </div>
             <div className='key-row'>
                 {
                     keyParams.filter(k => k.row === 5).map((k, idx) => {
-                        return <div key={idx} className={`key ${k.selected === true? 'green': ''} ${k.key === ' '? 'space': ''}`}>{k.key === ' '? 'A': k.key}</div>
+                        return <div key={idx} className={`key ${k.selected === true? 'green-2': ''} ${k.key === ' '? 'space': ''}`}>{k.key === ' '? 'A': k.key}</div>
                     })
                 }
             </div>

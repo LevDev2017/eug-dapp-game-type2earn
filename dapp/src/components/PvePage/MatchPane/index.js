@@ -51,7 +51,7 @@ const MatchPane = (props) => {
     }, [typingText.length, typedText.length, handleResult])
 
     return (
-        <MatchPaneContainer percent={percent}>
+        <MatchPaneContainer>
             <div className='col-frame'>
                 <div className='row-frame align-center justify-center'>
                     <div className='label capitalize'>typing level</div>

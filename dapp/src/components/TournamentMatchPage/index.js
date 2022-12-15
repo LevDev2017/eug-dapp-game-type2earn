@@ -13,9 +13,11 @@ import BNBSVG from '../../assets/svg/bnb-logo.svg'
 import { Link } from 'react-router-dom'
 import MatchPane from './MatchPane'
 import FinalPane from './FinalPane'
+import ResultModal from '../ResultModal'
 
 const TournamentMatchPage = (props) => {
     const { category } = props
+    const [showModal, setShowModal] = useState(false)
 
     return (
         <TournamentMatchPageContainer>
@@ -41,7 +43,7 @@ const TournamentMatchPage = (props) => {
                 </div>
                 {
                     category === 'match'?
-                    <MatchPane />
+                    <MatchPane handleResult={() => setShowModal(true)} />
                     :
                     category === 'final'?
                     <FinalPane />
@@ -49,6 +51,7 @@ const TournamentMatchPage = (props) => {
                     <></>
                 }
             </div>
+            { showModal === true && <ResultModal close={() => setShowModal(false)} result='fail' label1='try next time!' label2='YOU LOSE...' label3='- 1000 $TTE' icon={TTESVG} handleClick={() => setShowModal(false)}/>}
         </TournamentMatchPageContainer>
     )
 }

@@ -40,7 +40,7 @@ export const KeyboardLayoutContainer = styled.div`
             }
         }
 
-        .green {
+        .green-2 {
             background: #61F908;
             color: black;
         }
