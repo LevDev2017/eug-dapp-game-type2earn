@@ -106,3 +106,6 @@ dist
 build
 yarn.lock
 .secret
+/dapp/.firebaserc
+/dapp/.gitignore
+/dapp/firebase.json
