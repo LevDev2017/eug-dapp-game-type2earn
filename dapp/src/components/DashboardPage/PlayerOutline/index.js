@@ -36,7 +36,7 @@ const PlayerOutline = (props) => {
 
     return (
         <PlayerOutlineContainer ref={myRef}>
-            <img src={PlayerOutlineSVG} alt='' className='back-image-frame'/>
+            <img className='width-300' src={PlayerOutlineSVG} alt=''/>
             <div className='stand-image'>
                 <img src={icon} alt='' />
             </div> 

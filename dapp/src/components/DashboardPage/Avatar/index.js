@@ -14,7 +14,7 @@ const Avatar = (props) => {
     return (
         <AvatarContainer>
             <div className='column-align'>
-                <img src={AvatarSamplePNG} alt='' className='avatar'/>
+                <img className='avatar' src={AvatarSamplePNG} alt=''/>
             </div>
             <div className='bnb-balance'>
                 <ValueLabel label='3,012' icon={<img src={BNBSVG} alt='' />}/>

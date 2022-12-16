@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const PlayerOutlineContainer = styled.div`
     position: relative;
 
-    .back-image-frame {
+    .width-300 {
         width: 300px;
     }
 

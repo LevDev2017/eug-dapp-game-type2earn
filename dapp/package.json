@@ -1,8 +1,8 @@
 {
-  "name": "starlinksatellite",
-  "version": "0.1.0",
+  "name": "type2earn",
+  "version": "1.0.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "/",
   "dependencies": {
     "@meronex/icons": "^4.0.0",
     "@pqina/flip": "^1.7.7",
@@ -30,7 +30,6 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3",
     "react-transition-group": "^4.4.2",
-    "react-twitter-embed": "^3.0.3",
     "styled-components": "^5.3.3",
     "use-wallet": "^0.13.4",
     "web-vitals": "^1.0.1",
